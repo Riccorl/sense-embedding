@@ -3,14 +3,14 @@
 
 # Sense Embedding
 
-## Datasets
+### Datasets
 
 The datasets used can be found here:
 
 * EuroSense: http://lcl.uniroma1.it/eurosense/
 * SEW (Semantically Enriched Wikipedia) http://lcl.uniroma1.it/sew/
 
-## Preprocessing
+### Preprocessing
 
 Before train the model, We need to preprocess the raw dataset. We take EuroSense as example. EuroSense consist of a a single large XML file (21GB uncompressed for the high precision version), even though it is a multilingual corpus, we will use only the English sentences. The file can be filtered with the `filter_eurosense()` function inside `preprocessing/eurosense.py` file.
 
@@ -39,7 +39,7 @@ We can run the `parse.py` script to obtain this parsed dataset.
 python code/parse.py es -i es_raw.xml -o parsed_es.txt 
 ```
 
-## Train
+### Train
 
 Gensim implementation of Word2Vec and FastText are used to train the sense vectors. The train script is implemented in the `train.py` file. To start the training phase, run
 
@@ -77,7 +77,7 @@ lemma1_synset1 dim1 dim2 dim3 ... dimn
 lemma2_synset2 dim1 dim2 dim3 ... dimn
 ```
 
-## Evaluation
+### Evaluation
 
 The evaluation consists of measuring the similarity or relatedness of pairs of words. Word similarity datasets ([WordSimilarity-353](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/)) consists of a list of pairs of words. For each pair we have a score of similarity established by human annotators
 
