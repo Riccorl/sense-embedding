@@ -16,6 +16,7 @@ def train_w2v(
     model: gensim.models = Word2Vec,
     min_count: int = 3,
     iter: int = 5,
+    size: int = 400,
     save_model: str = None,
 ):
     # Logs to monitor gensim
@@ -29,7 +30,7 @@ def train_w2v(
     loader = SentenceLoader(sentences)
     w2v_model = model(
         sentences=loader,
-        size=400,
+        size=size,
         window=5,
         min_count=min_count,
         workers=multiprocessing.cpu_count(),
@@ -41,7 +42,7 @@ def train_w2v(
     print("Saving vectors...")
     w2v_model.wv.save_word2vec_format(save_embeddings, binary=False)
     file, _, ext = save_embeddings.rpartition(".")
-    utils.clean_embeddings(save_embeddings, file + "_clean." + ext)
+    utils.clean_embeddings(save_embeddings, file + "_clean." + ext, size)
 
     if save_model:
         print("Saving model...")
@@ -81,6 +82,13 @@ def parse_args():
         default=5,
         type=int,
     )
+    parser.add_argument(
+        "--size",
+        help="dimensionality of the feature vectors",
+        dest="size",
+        default=400,
+        type=int,
+    )
 
     return parser.parse_args()
 
@@ -91,6 +99,7 @@ def main(
     model_type: str,
     min_count: int = 3,
     iter: int = 5,
+    size: int = 400,
     save_model: str = None,
 ):
     if model_type == "w2v":
@@ -111,6 +120,7 @@ def main(
         model=model,
         min_count=min_count,
         iter=iter,
+        size=size,
         save_model=save_model,
     )
 
@@ -123,5 +133,6 @@ if __name__ == "__main__":
         model_type=args.model,
         min_count=args.min_count,
         iter=args.iter,
+        size=args.size,
         save_model=args.save_model,
     )

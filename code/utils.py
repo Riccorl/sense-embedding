@@ -47,7 +47,7 @@ def write_dictionary(filename: str, dictionary: Dict):
             file.write(k + "\t" + "\t".join(v[0]) + "\n")
 
 
-def clean_embeddings(path_input: str, path_output: str):
+def clean_embeddings(path_input: str, path_output: str, size: int):
     """
     Clean embeddings by removing non lemma_synset vectors.
     :param path_input: path to original embeddings.
@@ -56,7 +56,7 @@ def clean_embeddings(path_input: str, path_output: str):
     """
     old_emb = read_dataset(path_input)
     filtered = [vector for vector in old_emb if "_bn:" in vector]
-    write_dataset(path_output, [str(len(filtered)) + " " + "400"] + filtered)
+    write_dataset(path_output, [str(len(filtered)) + " " + str(size)] + filtered)
 
 
 def split_dataset(filename: str, n_split: int):

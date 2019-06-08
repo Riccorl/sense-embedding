@@ -42,7 +42,6 @@ def parse_args():
     parser.add_argument(
         "-o", help="path where to save the parsed file", required=True, dest="output"
     )
-    parser.add_argument("-m", help="path where to save the model file", dest="model")
     parser.add_argument(
         "--check-synset",
         help="chek if synset is correct, works with EuroSense only.",
