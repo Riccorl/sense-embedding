@@ -2,5 +2,5 @@
 gensim=3.4.0=py37h14c3975_0
 lxml=4.3.3=pypi_0
 matplotlib=3.0.3=py37h5429711_0
-nltk=3.4.1=py37_0
+nltk=3.4.5=py37_0
 tqdm=4.31.1=py37_1
